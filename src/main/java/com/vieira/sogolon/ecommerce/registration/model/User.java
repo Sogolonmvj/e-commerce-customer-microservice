@@ -1,5 +1,6 @@
 package com.vieira.sogolon.ecommerce.registration.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.vieira.sogolon.ecommerce.registration.enums.UserRole;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,6 +14,7 @@ import java.util.Collections;
 @Data
 @NoArgsConstructor
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Table(name="customer")
 public class User implements UserDetails {
 
@@ -43,9 +45,7 @@ public class User implements UserDetails {
                 String cep,
                 String cpf,
                 String password,
-                UserRole userRole,
-                Boolean locked,
-                Boolean enabled) {
+                UserRole userRole) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -53,8 +53,6 @@ public class User implements UserDetails {
         this.cpf = cpf;
         this.password = password;
         this.userRole = userRole;
-        this.locked = locked;
-        this.enabled = enabled;
     }
 
     @Override
