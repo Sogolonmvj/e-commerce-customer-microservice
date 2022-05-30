@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+
+  users-system:
+    image: sogo/users-system
+    container_name: users-system
+    ports:
+      - "8080:8084"
+    restart: always
+    links:
+      - docker-postgres
+    depends_on:
+      - docker-postgres
+    networks:
+      - host
+  docker-postgres:
+    image: postgres:10.4
+    environment:
+      - POSTGRES_DB=customer
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=0wN3r
+    networks:
+      - host
+
+networks:
+  host:
