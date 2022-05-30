@@ -2,12 +2,12 @@ server:
   error:
     include-message: always
     include-binding-errors: always
-  port: 8080
+  port: 8084
 
 spring:
   datasource:
     password: 0wN3r
-    url: jdbc:postgresql://localhost:5432/customer_registration
+    url: jdbc:postgresql://host.docker.internal:5433/customer_registration
     username: postgres
   jpa:
     generate-ddl: true

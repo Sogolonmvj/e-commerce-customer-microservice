@@ -16,8 +16,12 @@ services:
       - host
   docker-postgres:
     image: postgres:10.4
+    ports:
+      - "5432:5433"
+    volumes:
+      - ./database-data:/data/db
     environment:
-      - POSTGRES_DB=customer
+      - POSTGRES_DB=customer_registration
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=0wN3r
     networks:
