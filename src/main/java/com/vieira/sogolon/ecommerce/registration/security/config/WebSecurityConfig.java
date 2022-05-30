@@ -31,21 +31,12 @@ public class WebSecurityConfig {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/api/user/create")
+                    .antMatchers("/api/user/create/**")
                     .permitAll()
                 .anyRequest()
                 .authenticated().and()
                 .formLogin();
         return http.build();
     }
-
-//    @Bean
-//    public DaoAuthenticationProvider daoAuthenticationProvider() {
-//        DaoAuthenticationProvider provider =
-//                new DaoAuthenticationProvider();
-//        provider.setPasswordEncoder(bCryptPasswordEncoder);
-//        provider.setUserDetailsService(userService);
-//        return provider;
-//    }
 
 }

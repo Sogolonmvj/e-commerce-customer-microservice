@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.vieira.sogolon.ecommerce</groupId>
-	<artifactId>user</artifactId>
+	<artifactId>userCustomer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>user</name>
+	<name>userCustomer</name>
 	<description>Ecommerce project for educational purposes</description>
 	<properties>
 		<java.version>17</java.version>

@@ -16,7 +16,7 @@ import java.util.Collections;
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Table(name="customer")
-public class User implements UserDetails {
+public class UserCustomer implements UserDetails {
 
     @SequenceGenerator(name = "customer_sequence",
             sequenceName = "customer_sequence",
@@ -39,13 +39,13 @@ public class User implements UserDetails {
     private Boolean locked = false;
     private Boolean enabled = false;
 
-    public User(String firstName,
-                String lastName,
-                String email,
-                String cep,
-                String cpf,
-                String password,
-                UserRole userRole) {
+    public UserCustomer(String firstName,
+                        String lastName,
+                        String email,
+                        String cep,
+                        String cpf,
+                        String password,
+                        UserRole userRole) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
