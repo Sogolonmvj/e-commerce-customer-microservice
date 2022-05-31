@@ -37,3 +37,16 @@ spring:
           timeout: 3000
           writetimeout: 5000
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+info:
+  app:
+    version: '@project.version@'
+    name: '@project.name@'
+    java:
+      version: '@java.version@'
+    description: '@project.description@'
+

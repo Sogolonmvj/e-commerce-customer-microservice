@@ -47,5 +47,32 @@ services:
     networks:
       - host
 
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./Prometheus:/etc/prometheus
+    networks:
+      - host
+    links:
+      - users-system
+    depends_on:
+      - users-system
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SERVER_PROTOCOL: http
+      GF_SERVER_HTTP: 3000
+    networks:
+      - host
+    links:
+      - prometheus
+    depends_on:
+      - prometheus
+
 networks:
   host:
