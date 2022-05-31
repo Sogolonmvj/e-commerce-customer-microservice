@@ -1,5 +1,6 @@
 package com.vieira.sogolon.ecommerce.registration.services;
 
+import com.vieira.sogolon.ecommerce.registration.dto.UserDTO;
 import com.vieira.sogolon.ecommerce.registration.model.UserCustomer;
 import com.vieira.sogolon.ecommerce.registration.repository.UserRepository;
 import com.vieira.sogolon.ecommerce.registration.security.token.ConfirmationToken;
@@ -12,6 +13,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -64,6 +68,44 @@ public class UserService implements UserDetailsService {
 
     public int enableUser(String email) {
         return userRepository.enableUser(email);
+    }
+
+    public List<UserDTO> getAllCustomers() {
+        List<UserCustomer> users = userRepository.findAll();
+
+        List<UserDTO> userDTOS = new ArrayList<>();
+
+        for (UserCustomer user: users) {
+
+            UserDTO userDTO = new UserDTO();
+
+            userDTO.setId(user.getId());
+            userDTO.setFirstName(user.getFirstName());
+            userDTO.setLastName(user.getLastName());
+            userDTO.setEmail(user.getEmail());
+            userDTO.setCep(user.getCep());
+
+            userDTOS.add(userDTO);
+
+        }
+
+        return userDTOS;
+    }
+
+    public Optional<UserDTO> getUserCustomer(String email) {
+        Optional<UserCustomer> user = userRepository.findByEmail(email);
+
+        Optional<UserDTO> userDTO = Optional.of(new UserDTO());
+        
+        if (user.isPresent()) {
+            userDTO.get().setId(user.get().getId());
+            userDTO.get().setFirstName(user.get().getFirstName());
+            userDTO.get().setLastName(user.get().getLastName());
+            userDTO.get().setEmail(user.get().getEmail());
+            userDTO.get().setCep(user.get().getCep());
+        }
+
+        return userDTO;
     }
 
 }

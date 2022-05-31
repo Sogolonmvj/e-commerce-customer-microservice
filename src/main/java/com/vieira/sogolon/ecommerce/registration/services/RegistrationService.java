@@ -41,7 +41,7 @@ public class RegistrationService {
                         )
         );
 
-        String link = "http://localhost:8080/api/user/create/confirm?token=" + token;
+        String link = "http://users-system:8084/api/user/create/confirm?token=" + token;
         emailSender.send(
                 request.getEmail(),
                 buildEmail(request.getFirstName(), link));
@@ -71,7 +71,7 @@ public class RegistrationService {
                 confirmationToken.getUserCustomer().getEmail()
         );
 
-        return "Confirmado!";
+        return "Email confirmado com sucesso!";
     }
 
     private String buildEmail(String name, String link) {

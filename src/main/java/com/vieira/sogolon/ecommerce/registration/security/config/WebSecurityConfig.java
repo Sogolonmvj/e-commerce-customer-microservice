@@ -31,8 +31,9 @@ public class WebSecurityConfig {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/api/user/create/**")
-                    .permitAll()
+                    .antMatchers("/api/user/create/**").permitAll()
+                    .antMatchers("/api/users").permitAll()
+                    .antMatchers("/api/user/**").permitAll()
                 .anyRequest()
                 .authenticated().and()
                 .formLogin();

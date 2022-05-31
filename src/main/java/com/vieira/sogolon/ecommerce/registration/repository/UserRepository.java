@@ -1,5 +1,6 @@
 package com.vieira.sogolon.ecommerce.registration.repository;
 
+import com.vieira.sogolon.ecommerce.registration.dto.UserDTO;
 import com.vieira.sogolon.ecommerce.registration.model.UserCustomer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
