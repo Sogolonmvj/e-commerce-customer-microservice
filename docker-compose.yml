@@ -9,21 +9,41 @@ services:
       - "8080:8084"
     restart: always
     links:
-      - docker-postgres
+      - users-system-postgres
     depends_on:
-      - docker-postgres
+      - users-system-postgres
     networks:
       - host
-  docker-postgres:
+  users-system-postgres:
     image: postgres:10.4
     ports:
-      - "5432:5433"
+      - "5432:5432"
     volumes:
       - ./database-data:/data/db
     environment:
       - POSTGRES_DB=customer_registration
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=0wN3r
+    networks:
+      - host
+  maildev:
+    image: maildev/maildev
+    restart: always
+    environment:
+      - TZ=Asia/Shanghai
+      - MAILDEV_WEB_PORT=1080
+      - MAILDEV_SMTP_PORT=1025
+    ports:
+      - "1080:1080"
+      - "1025:1025"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+    links:
+      - users-system
+    depends_on:
+      - users-system
     networks:
       - host
 
