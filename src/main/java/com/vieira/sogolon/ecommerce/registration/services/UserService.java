@@ -96,7 +96,7 @@ public class UserService implements UserDetailsService {
         Optional<UserCustomer> user = userRepository.findByEmail(email);
 
         Optional<UserDTO> userDTO = Optional.of(new UserDTO());
-        
+
         if (user.isPresent()) {
             userDTO.get().setId(user.get().getId());
             userDTO.get().setFirstName(user.get().getFirstName());
