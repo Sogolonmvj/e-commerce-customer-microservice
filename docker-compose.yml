@@ -3,7 +3,7 @@ version: '3.8'
 services:
 
   users-system:
-    image: sogo/users-system
+    image: sogolonmvj/users-system
     container_name: users-system
     ports:
       - "8080:8084"
