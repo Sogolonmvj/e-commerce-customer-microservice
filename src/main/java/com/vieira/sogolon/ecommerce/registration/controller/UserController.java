@@ -4,6 +4,7 @@ import com.vieira.sogolon.ecommerce.registration.dto.UserDTO;
 import com.vieira.sogolon.ecommerce.registration.model.UserCustomer;
 import com.vieira.sogolon.ecommerce.registration.services.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,9 +29,14 @@ public class UserController {
     }
 
     @GetMapping("/user/{email}")
-    public ResponseEntity<Optional<UserDTO>> fetchCustomer(@PathVariable("email") String email) {
+    public ResponseEntity<?> fetchCustomer(@PathVariable("email") String email) {
         Optional<UserDTO> customerEmail = userService.getUserCustomer(email);
-        return ResponseEntity.ok(customerEmail);
+
+        if (customerEmail.isPresent() && customerEmail.get().getId() != null) {
+            return ResponseEntity.ok(customerEmail);
+        }
+
+        return ResponseEntity.notFound().build();
     }
 
 }
