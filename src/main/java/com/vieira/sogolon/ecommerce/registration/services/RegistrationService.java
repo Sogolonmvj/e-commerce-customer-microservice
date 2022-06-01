@@ -8,6 +8,11 @@ import com.vieira.sogolon.ecommerce.registration.security.token.services.Confirm
 import com.vieira.sogolon.ecommerce.registration.sender.EmailSender;
 import com.vieira.sogolon.ecommerce.registration.validators.EmailValidator;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +26,8 @@ public class RegistrationService {
     private final EmailValidator emailValidator;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
+    private Environment env;
+
 
     public String register(RegistrationRequest request) {
         boolean isValidEmail = emailValidator.
@@ -41,7 +48,7 @@ public class RegistrationService {
                         )
         );
 
-        String link = "http://users-system:8084/api/user/create/confirm?token=" + token;
+        String link = env.getProperty("sogolon.token-url") + token;
         emailSender.send(
                 request.getEmail(),
                 buildEmail(request.getFirstName(), link));

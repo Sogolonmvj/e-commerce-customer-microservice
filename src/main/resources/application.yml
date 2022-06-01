@@ -2,46 +2,7 @@ server:
   error:
     include-message: always
     include-binding-errors: always
-#  port: 8084
 
-spring:
-  datasource:
-    password: 0wN3r
-    url: jdbc:postgresql://users-system-postgres:5432/customer_registration
-    username: postgres
-  jpa:
-    generate-ddl: true
-    hibernate:
-      ddl-auto: create
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
-    show-sql: true
-
-  mail:
-    host: maildev
-    port: 1025
-    username: customer
-    password: N3Wd1s0rD3r
-
-    properties:
-      mail:
-        smtp:
-          ssl:
-            trust: "*"
-          auth: true
-          starttls:
-            enable: true
-          connectiontimeout: 5000
-          timeout: 3000
-          writetimeout: 5000
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
 info:
   app:
     version: '@project.version@'
@@ -50,3 +11,8 @@ info:
       version: '@java.version@'
     description: '@project.description@'
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

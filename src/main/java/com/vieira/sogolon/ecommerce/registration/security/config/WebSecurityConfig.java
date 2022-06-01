@@ -34,6 +34,7 @@ public class WebSecurityConfig {
                     .antMatchers("/api/user/create/**").permitAll()
                     .antMatchers("/api/users").permitAll()
                     .antMatchers("/api/user/**").permitAll()
+                    .antMatchers("/actuator/**").permitAll()
                 .anyRequest()
                 .authenticated().and()
                 .formLogin();
