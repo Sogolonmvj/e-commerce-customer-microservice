@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 public class Address {
 
     private String cep;
-    private String city;
-    private String street;
-    private String district;
+    private String localidade;
+    private String logradouro;
+    private String bairro;
 
 }

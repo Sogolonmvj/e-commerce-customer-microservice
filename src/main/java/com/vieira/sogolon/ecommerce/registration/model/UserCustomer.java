@@ -32,6 +32,9 @@ public class UserCustomer implements UserDetails {
     private String lastName;
     private String email;
     private String cep;
+    private String city;
+    private String street;
+    private String district;
     private String cpf;
     private String password;
     @Enumerated(EnumType.STRING)

@@ -33,3 +33,10 @@ spring:
 
 sogolon:
   token-url: http://users-system:8084/api/user/create/confirm?token=
+
+#eureka:
+#  instance:
+#    hostname: service-discovery
+#  client:
+#    service-url:
+#      defaultZone: http://service-discovery:8761/eureka

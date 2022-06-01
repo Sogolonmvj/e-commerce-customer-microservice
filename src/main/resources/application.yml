@@ -2,6 +2,7 @@ server:
   error:
     include-message: always
     include-binding-errors: always
+  port: 8080
 
 info:
   app:
@@ -16,3 +17,7 @@ management:
     web:
       exposure:
         include: '*'
+
+#spring:
+#  application:
+#    name: 'users-system'
